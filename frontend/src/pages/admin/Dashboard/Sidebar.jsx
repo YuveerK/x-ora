@@ -17,7 +17,7 @@ import { CiLogout } from "react-icons/ci";
 const Sidebar = () => {
   const [selectedMenuOption, setSelectedMenuOption] = useState("Home");
   return (
-    <div className="w-[100px] h-screen overflow-y-auto bg-[#2a3269] p-4 transition-all xl:w-[300px] ">
+    <div className="w-[100px] h-screen overflow-y-auto bg-[#2a3269] p-2 lg:p-4 transition-all xl:w-[300px] ">
       <div>
         <h1 className="font-bold text-xl text-white text-center hidden ">
           X-ORA
@@ -27,21 +27,23 @@ const Sidebar = () => {
       <div className=" lg:flex h-[calc(100vh-80px)] flex-col  justify-between">
         <div className="text-white mt-7">
           <Link
+            to={"/admin/dashboard/home"}
             className={`flex items-center justify-center my-8 p-2  rounded-md hover:bg-blue-800   ${
               selectedMenuOption === "Overview" && "bg-[#2c3c6f] "
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Overview")}
           >
-            <IoPieChartOutline size={30} className="mr-0 " />
+            <IoPieChartOutline size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Overview</p>
           </Link>
           <Link
+            to={"/admin/dashboard/rentals"}
             className={`flex items-center justify-center my-8 p-2  rounded-md hover:bg-blue-800   ${
               selectedMenuOption === "Rentals" && "bg-[#2c3c6f] "
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Rentals")}
           >
-            <BiBuildings size={30} className="mr-0 " />
+            <BiBuildings size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Rentals</p>
           </Link>
           <Link
@@ -50,7 +52,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Leasing")}
           >
-            <LuScrollText size={30} className="mr-0 " />
+            <LuScrollText size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Leasing</p>
           </Link>
           <Link
@@ -59,16 +61,17 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("People")}
           >
-            <MdGroups size={30} className="mr-0 " />
+            <MdGroups size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">People</p>
           </Link>
           <Link
+            to={"/admin/dashboard/maintenance-requests"}
             className={`flex items-center justify-center my-8 p-2  rounded-md hover:bg-blue-800   ${
               selectedMenuOption === "Maintenance" && "bg-[#2c3c6f] "
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Maintenance")}
           >
-            <BsCardChecklist size={30} className="mr-0 " />
+            <BsCardChecklist size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">
               Tasks & Maintenance
             </p>
@@ -79,7 +82,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Accounting")}
           >
-            <CiDollar size={30} className="mr-0 " />
+            <CiDollar size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Accounting</p>
           </Link>
           <Link
@@ -88,7 +91,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Communication")}
           >
-            <TbSpeakerphone size={30} className="mr-0 " />
+            <TbSpeakerphone size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Communication</p>
           </Link>
           <Link
@@ -97,7 +100,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Notes")}
           >
-            <RxPencil2 size={30} className="mr-0 " />
+            <RxPencil2 size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Notes</p>
           </Link>
           <Link
@@ -106,7 +109,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Files")}
           >
-            <FaRegFolderOpen size={30} className="mr-0 " />
+            <FaRegFolderOpen size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Files</p>
           </Link>
           <Link
@@ -115,7 +118,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Reports")}
           >
-            <FaChartSimple size={30} className="mr-0 " />
+            <FaChartSimple size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Reports</p>
           </Link>
         </div>
@@ -126,7 +129,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Help")}
           >
-            <IoHelpCircle size={30} className="mr-0 " />
+            <IoHelpCircle size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Help</p>
           </Link>
           <Link
@@ -135,7 +138,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Settings")}
           >
-            <IoSettingsOutline size={30} className="mr-0 " />
+            <IoSettingsOutline size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Settings</p>
           </Link>
           <Link
@@ -144,7 +147,7 @@ const Sidebar = () => {
             } xl:justify-start`}
             onClick={() => setSelectedMenuOption("Logout")}
           >
-            <CiLogout size={30} className="mr-0 " />
+            <CiLogout size={30} className="mr-0 size-5 lg:size-8" />
             <p className="text-xl hidden xl:block xl:ml-2 ">Logout</p>
           </Link>
         </div>

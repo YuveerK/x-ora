@@ -14,38 +14,38 @@ const IncomeExpenseChart = () => {
   const data = [
     {
       name: "Jan",
-      uv: 40000,
-      pv: 2400,
+      ["Levies Income"]: 40000,
+      ["Complex Expenses"]: 2400,
     },
     {
       name: "Feb",
-      uv: 3000,
-      pv: 1398,
+      ["Levies Income"]: 3000,
+      ["Complex Expenses"]: 1398,
     },
     {
       name: "Mar",
-      uv: 2000,
-      pv: 9800,
+      ["Levies Income"]: 2000,
+      ["Complex Expenses"]: 9800,
     },
     {
       name: "Apr",
-      uv: 2780,
-      pv: 3908,
+      ["Levies Income"]: 2780,
+      ["Complex Expenses"]: 3908,
     },
     {
       name: "May",
-      uv: 1890,
-      pv: 4800,
+      ["Levies Income"]: 1890,
+      ["Complex Expenses"]: 4800,
     },
     {
       name: "Jun",
-      uv: 2390,
-      pv: 3800,
+      ["Levies Income"]: 2390,
+      ["Complex Expenses"]: 3800,
     },
     {
       name: "Jul",
-      uv: 3490,
-      pv: 4300,
+      ["Levies Income"]: 3490,
+      ["Complex Expenses"]: 4300,
     },
   ];
   return (
@@ -58,23 +58,23 @@ const IncomeExpenseChart = () => {
           top: 5,
           right: 30,
           left: 20,
-          bottom: 80,
+          bottom: 105,
         }}
       >
         <XAxis dataKey="name" />
-        <YAxis />
+
         <Tooltip />
-        <Legend />
+
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="Complex Expenses"
           stroke="red"
           activeDot={{ r: 8 }}
           strokeWidth={3}
         />
         <Line
           type="monotone"
-          dataKey="uv"
+          dataKey="Levies Income"
           stroke="lightgreen"
           strokeWidth={3}
         />

@@ -34,8 +34,15 @@ router.post("/login", async (req, res) => {
 
 // Create a new user
 router.post("/create-user", async (req, res) => {
-  const { first_name, last_name, email, password, phone_number, role } =
-    req.body;
+  const {
+    first_name,
+    last_name,
+    email,
+    password,
+    phone_number,
+    role,
+    profile_picture,
+  } = req.body;
 
   try {
     // Check if user already exists
@@ -56,8 +63,8 @@ router.post("/create-user", async (req, res) => {
     const [result] = await pool
       .promise()
       .query(
-        "INSERT INTO Users (first_name, last_name, email, password_hash, phone_number, role) VALUES (?, ?, ?, ?, ?, ?)",
-        [first_name, last_name, email, password_hash, phone_number, role]
+        "INSERT INTO Users (first_name, last_name, email, password_hash, phone_number, role, profile_picture) VALUES (?, ?, ?, ?, ?, ?,?)",
+        [first_name, last_name, email, password_hash, phone_number, role, ""]
       );
 
     res
@@ -99,10 +106,11 @@ router.get("/users/:id", (req, res) => {
 // Update a user by ID
 router.put("/users/:id", (req, res) => {
   const { id } = req.params;
-  const { first_name, last_name, email, phone_number, role } = req.body;
+  const { first_name, last_name, email, phone_number, role, profile_picture } =
+    req.body;
   pool.query(
-    "UPDATE Users SET first_name = ?, last_name = ?, email = ?, phone_number = ?, role = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?",
-    [first_name, last_name, email, phone_number, role, id],
+    "UPDATE Users SET first_name = ?, last_name = ?, email = ?, phone_number = ?, role = ?, profile_picture = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?",
+    [first_name, last_name, email, phone_number, role, profile_picture, id],
     (error, results) => {
       if (error) {
         return res.status(500).json({ error: error.message });
@@ -127,6 +135,38 @@ router.delete("/users/:id", (req, res) => {
     }
     res.status(200).json({ message: "User deleted successfully" });
   });
+});
+
+// Forgot Password route (to set a new password)
+router.post("/forgot-password", async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    // Check if the user exists by email
+    const [user] = await pool
+      .promise()
+      .query("SELECT * FROM Users WHERE email = ?", [email]);
+
+    if (user.length === 0) {
+      return res.status(400).json({ message: "No user with this email found" });
+    }
+
+    // Hash the new password
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(newPassword, saltRounds);
+
+    // Update the user's password
+    await pool
+      .promise()
+      .query(
+        "UPDATE Users SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE email = ?",
+        [passwordHash, email]
+      );
+
+    res.status(200).json({ message: "Password reset successful" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = router;

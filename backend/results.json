@@ -1,0 +1,184 @@
+[
+  {
+    "date": "2024-08-19",
+    "amount": "25000.00",
+    "reference": "INVESTMENT DEPOSIT FINANCIAL PAYOUT"
+  },
+  {
+    "date": "2024-08-15",
+    "amount": "5000.00",
+    "reference": "CAPITEC 4222/0027-03"
+  },
+  { "date": "2024-08-13", "amount": "4830.49", "reference": "4222/0009" },
+  { "date": "2024-08-12", "amount": "2000.00", "reference": "4222/0027-03" },
+  { "date": "2024-08-08", "amount": "4259.45", "reference": "4222/0018" },
+  { "date": "2024-08-08", "amount": "2019.35", "reference": "4222/0001" },
+  { "date": "2024-08-08", "amount": "4689.65", "reference": "4222/0001" },
+  {
+    "date": "2024-08-05",
+    "amount": "1000.00",
+    "reference": "FNB APP PAYMENT FROM 4222/1006"
+  },
+  {
+    "date": "2024-08-03",
+    "amount": "3534.83",
+    "reference": "ABSA BANK 4222/0012-03"
+  },
+  {
+    "date": "2024-08-02",
+    "amount": "25000.00",
+    "reference": "CAPITEC C DU TOIT"
+  },
+  { "date": "2024-08-02", "amount": "4891.05", "reference": "4222/0024" },
+  { "date": "2024-08-02", "amount": "4100.00", "reference": "4222/0011.03" },
+  {
+    "date": "2024-08-02",
+    "amount": "2681.76",
+    "reference": "PAYPROP 4222/0025"
+  },
+  {
+    "date": "2024-08-02",
+    "amount": "5139.72",
+    "reference": "FNB APP PAYMENT FROM 4222/0026"
+  },
+  { "date": "2024-08-01", "amount": "4478.00", "reference": "4222/0004-01" },
+  {
+    "date": "2024-08-01",
+    "amount": "1350.00",
+    "reference": "FNB APP PAYMENT FROM 4222/0023-03"
+  },
+  {
+    "date": "2024-07-30",
+    "amount": "5814.99",
+    "reference": "FNB OB PMT 4222/0022-02"
+  },
+  {
+    "date": "2024-07-30",
+    "amount": "3000.00",
+    "reference": "SCHEDULED PYMT FROM 4222/0023-03"
+  },
+  {
+    "date": "2024-07-29",
+    "amount": "9000.00",
+    "reference": "FNB APP PAYMENT FROM 4222/0007-04"
+  },
+  {
+    "date": "2024-07-29",
+    "amount": "3863.77",
+    "reference": "FNB APP PAYMENT FROM 4222/0008"
+  },
+  {
+    "date": "2024-07-27",
+    "amount": "5500.00",
+    "reference": "PAYPROP 4222/0010-02"
+  },
+  { "date": "2024-07-27", "amount": "3519.32", "reference": "4222/0015-03" },
+  { "date": "2024-07-26", "amount": "4000.00", "reference": "4222/0003-2" },
+  { "date": "2024-07-26", "amount": "3692.01", "reference": "4222/0029-03" },
+  { "date": "2024-07-26", "amount": "2782.00", "reference": "4222/0028-02" },
+  {
+    "date": "2024-07-25",
+    "amount": "10000.00",
+    "reference": "ABSA BANK 4222/0006-05"
+  },
+  {
+    "date": "2024-07-25",
+    "amount": "4147.00",
+    "reference": "CAPITEC UNIT 5 PRINCETON"
+  },
+  { "date": "2024-07-25", "amount": "3929.42", "reference": "4222/0016-04" },
+  {
+    "date": "2024-07-25",
+    "amount": "1500.00",
+    "reference": "CAPITEC 4222/0017-02"
+  },
+  {
+    "date": "2024-07-25",
+    "amount": "1000.00",
+    "reference": "FNB APP PAYMENT FROM 4222/0007-04"
+  },
+  {
+    "date": "2024-07-24",
+    "amount": "4000.00",
+    "reference": "FNB OB PMT 4222/0019-03"
+  },
+  { "date": "2024-07-23", "amount": "3045.00", "reference": "4222/0009" },
+  { "date": "2024-07-19", "amount": "4000.00", "reference": "4222/0021-04" },
+  { "date": "2024-07-15", "amount": "6000.00", "reference": "4222/0009" },
+  {
+    "date": "2024-07-15",
+    "amount": "33000.00",
+    "reference": "INVESTMENT DEPOSIT FINANCIAL PAYOUT"
+  },
+  { "date": "2024-07-06", "amount": "5347.12", "reference": "4222/0001" },
+  { "date": "2024-07-06", "amount": "3000.00", "reference": "4222/0018" },
+  { "date": "2024-07-06", "amount": "854.53", "reference": "4222/0018" },
+  { "date": "2024-07-04", "amount": "4490.00", "reference": "4222/0020-03" },
+  {
+    "date": "2024-07-04",
+    "amount": "3261.03",
+    "reference": "ABSA BANK 4222/0012-03"
+  },
+  { "date": "2024-07-03", "amount": "3816.00", "reference": "4222/0011.03" },
+  {
+    "date": "2024-07-03",
+    "amount": "4948.83",
+    "reference": "FNB OB PMT 422/0010/02"
+  },
+  { "date": "2024-07-02", "amount": "4045.33", "reference": "4222/0024" },
+  { "date": "2024-07-02", "amount": "3334.00", "reference": "4222/0004-01" },
+  {
+    "date": "2024-07-02",
+    "amount": "3997.69",
+    "reference": "FNB APP PAYMENT FROM 4222/0026"
+  },
+  {
+    "date": "2024-07-01",
+    "amount": "1190.00",
+    "reference": "FNB APP PAYMENT FROM 4222/0023-03"
+  },
+  {
+    "date": "2024-07-01",
+    "amount": "3000.00",
+    "reference": "SCHEDULED PYMT FROM 4222/0023-03"
+  },
+  {
+    "date": "2024-06-29",
+    "amount": "3321.32",
+    "reference": "FNB APP PAYMENT FROM 4222/0008"
+  },
+  {
+    "date": "2024-06-28",
+    "amount": "4219.00",
+    "reference": "CAPITEC UNIT 5 PRINCETON"
+  },
+  {
+    "date": "2024-06-28",
+    "amount": "5580.84",
+    "reference": "FNB OB PMT 4222/0022-02"
+  },
+  { "date": "2024-06-27", "amount": "3305.81", "reference": "4222/0015-03" },
+  { "date": "2024-06-26", "amount": "3135.80", "reference": "4222/0028-02" },
+  { "date": "2024-06-26", "amount": "2096.99", "reference": "4222/0016-04" },
+  {
+    "date": "2024-06-26",
+    "amount": "1500.00",
+    "reference": "CAPITEC 4222/0017-02"
+  },
+  { "date": "2024-06-25", "amount": "3406.62", "reference": "4222/0029-03" },
+  {
+    "date": "2024-06-24",
+    "amount": "3000.00",
+    "reference": "FNB APP PAYMENT FROM 4222/0007-04"
+  },
+  {
+    "date": "2024-06-21",
+    "amount": "1000.00",
+    "reference": "FNB APP PAYMENT FROM 4222/0007-04"
+  },
+  {
+    "date": "2024-06-18",
+    "amount": "3500.00",
+    "reference": "Unit 27 Princeton"
+  }
+]

@@ -43,7 +43,7 @@ export default class Example extends PureComponent {
             top: 5,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 50,
           }}
           barCategoryGap="10%" // Adjust the gap between bars
         >

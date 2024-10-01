@@ -4,8 +4,8 @@ import { RiErrorWarningLine } from "react-icons/ri";
 
 const MaintenanceRequestsCard = () => {
   return (
-    <div className="border w-[700px] h-[300px] mx-8 rounded-md shadow-md bg-white overflow-y-scroll">
-      <div className="border-b p-4 text-xl font-bold">Maintenance Requests</div>
+    <div className="border w-full bg-white overflow-y-auto h-[400px] lg:w-[45%] rounded-md shadow-md">
+      <div className="border-b p-4 text-xl font-thin">Maintenance Requests</div>
       <div className="p-4">
         <div className="w-full flex items-center my-4">
           <div className="w-full flex items-center justify-between">
