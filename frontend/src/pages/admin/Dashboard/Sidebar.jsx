@@ -48,12 +48,13 @@ const Sidebar = () => {
           </Link>
           <Link
             className={`flex items-center justify-center my-8 p-2  rounded-md hover:bg-blue-800   ${
-              selectedMenuOption === "Leasing" && "bg-[#2c3c6f] "
+              selectedMenuOption === "Invoices" && "bg-[#2c3c6f] "
             } xl:justify-start`}
-            onClick={() => setSelectedMenuOption("Leasing")}
+            onClick={() => setSelectedMenuOption("Invoices")}
+            to={"/admin/dashboard/invoices"}
           >
             <LuScrollText size={30} className="mr-0 size-5 lg:size-8" />
-            <p className="text-xl hidden xl:block xl:ml-2 ">Leasing</p>
+            <p className="text-xl hidden xl:block xl:ml-2 ">Invoices</p>
           </Link>
           <Link
             className={`flex items-center justify-center my-8 p-2  rounded-md hover:bg-blue-800   ${

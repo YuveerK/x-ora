@@ -203,25 +203,40 @@ router.delete(
         }
       }
 
-      // Remove files from directory
-
-      const file = fs.readFileSync(`./uploads/${filename}`, "utf-8");
-      if (file) {
+      // Remove file from directory if it exists
+      try {
         fs.unlinkSync(`./uploads/${filename}`);
-        const query =
-          "UPDATE maintenance_requests SET files = ? WHERE maintenanceRequestId = ?";
-        await pool
-          .promise()
-          .query(query, [JSON.stringify(files), maintenanceRequestId]);
-        res
-          .status(200)
-          .json({ success: true, message: "File deleted successfully" });
-      } else {
-        res.status(404).json({ success: false, message: "File not found" });
+        console.log("File deleted from directory");
+      } catch (err) {
+        if (err.code === "ENOENT") {
+          console.log(
+            "File not found in directory, but proceeding with DB update"
+          );
+        } else {
+          throw err; // Re-throw if it's not a file-not-found error
+        }
       }
+
+      // Update the database even if the file was not found
+      const query =
+        "UPDATE maintenance_requests SET files = ? WHERE maintenanceRequestId = ?";
+      await pool
+        .promise()
+        .query(query, [JSON.stringify(files), maintenanceRequestId]);
+
+      res.status(200).json({
+        success: true,
+        message:
+          "File deleted (or not found) and database updated successfully",
+      });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ success: false, message: "Error deleting file" });
+      res
+        .status(500)
+        .json({
+          success: false,
+          message: "Error deleting file or updating database",
+        });
     }
   }
 );

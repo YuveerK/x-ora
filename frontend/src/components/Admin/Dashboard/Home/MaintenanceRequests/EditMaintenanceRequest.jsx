@@ -22,6 +22,7 @@ const EditMaintenanceRequest = ({ handleCloseEditRequestModal, request }) => {
   const [message, setMessage] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
   const [isViewImageClicked, setIsViewImageClicked] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -40,15 +41,9 @@ const EditMaintenanceRequest = ({ handleCloseEditRequestModal, request }) => {
         `${baseUrl}/delete-maintenance-images/${fileToRemove}/${request.maintenanceRequestId}`
       );
 
-      console.log(response);
       if (response.data.success) {
-        // If the file was successfully deleted on the server, remove it from the state
+        // Remove it from the state if the file was deleted on the server
         setExistingFiles(existingFiles.filter((file) => file !== fileToRemove));
-      } else {
-        console.error(
-          "Failed to delete the file on the server:",
-          response.data.message
-        );
       }
     } catch (error) {
       console.error("Error deleting the file:", error.message);
@@ -57,7 +52,6 @@ const EditMaintenanceRequest = ({ handleCloseEditRequestModal, request }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
     setMessage("");
 
     const data = new FormData();
@@ -85,18 +79,9 @@ const EditMaintenanceRequest = ({ handleCloseEditRequestModal, request }) => {
         }
       );
       setMessage("Maintenance request updated successfully!");
-      // handleCloseEditRequestModal(false);
     } catch (error) {
       setMessage("Failed to update maintenance request.");
     }
-  };
-
-  const formatDate = () => {
-    const date = new Date(request.requestDate);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${year}-${month}-${day}`;
   };
 
   const viewImage = (file) => {
@@ -105,130 +90,135 @@ const EditMaintenanceRequest = ({ handleCloseEditRequestModal, request }) => {
   };
 
   const closeViewImageModal = (payload) => {
-    console.log(payload);
     setIsViewImageClicked(payload);
   };
+
   return (
-    <div className="w-full h-screen absolute top-0 left-0 bg-black/50 flex items-center justify-items-center">
-      <div className="w-[90%] h-[90%] overflow-y-scroll mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <div className="w-full flex items-center justify-end">
-          <div
+    <div className="w-full h-screen absolute top-0 left-0 bg-black/50 flex items-center justify-center transition-all duration-300">
+      <div className="w-[800px] max-w-full h-[85%] overflow-y-auto mx-auto bg-white p-8 rounded-lg shadow-xl">
+        <div className="w-full flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold text-gray-800">
+            Edit Maintenance Request
+          </h2>
+          <button
             onClick={() => handleCloseEditRequestModal(false)}
-            className="w-fit px-4 py-2 rounded-md bg-red-500 hover:bg-red-600 text-white cursor-pointer"
+            className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg"
           >
             Close
-          </div>
+          </button>
         </div>
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Edit Maintenance Request
-        </h2>
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-gray-700">User ID</label>
-            <input
-              type="text"
-              name="userId"
-              value={formData.userId}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            />
-          </div>
+          {/* Form Fields */}
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">User ID</label>
+              <input
+                type="text"
+                name="userId"
+                value={formData.userId}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              />
+            </div>
 
-          <div>
-            <label className="block text-gray-700">Unit Number</label>
-            <input
-              type="text"
-              name="unitNumber"
-              value={formData.unitNumber}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            />
-          </div>
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Unit Number</label>
+              <input
+                type="text"
+                name="unitNumber"
+                value={formData.unitNumber}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              />
+            </div>
 
-          <div>
-            <label className="block text-gray-700">Request Date</label>
-            <input
-              type="date"
-              name="requestDate"
-              value={formData.requestDate}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            />
-          </div>
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">
+                Request Date
+              </label>
+              <input
+                type="date"
+                name="requestDate"
+                value={formData.requestDate}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              />
+            </div>
 
-          <div>
-            <label className="block text-gray-700">Priority</label>
-            <select
-              name="priority"
-              value={formData.priority}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            >
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
-          </div>
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Priority</label>
+              <select
+                name="priority"
+                value={formData.priority}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
 
-          <div>
-            <label className="block text-gray-700">Status</label>
-            <select
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            >
-              <option value="Pending">Pending</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
-            </select>
-          </div>
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Status</label>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              >
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
 
-          <div>
-            <label className="block text-gray-700">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            ></textarea>
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Description</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              ></textarea>
+            </div>
           </div>
 
           {/* Display Existing Files */}
           {existingFiles.length > 0 && (
-            <div className="mt-4">
-              <h3 className="text-gray-700 mb-2">Existing Files:</h3>
-              <div className="flex flex-wrap gap-4 items-center ">
+            <div className="mt-6">
+              <h3 className="text-gray-700 font-semibold mb-2">
+                Existing Files:
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {existingFiles.map((file, index) => (
-                  <div key={index} className="text-gray-600 text-sm">
-                    <div className="relative my-8 h-[300px] w-[200px] group cursor-pointer">
-                      <p>{file}</p>
-                      <img
-                        src={`${baseUrl}/uploads/${file}`} // Adjust according to your server setup
-                        alt={file}
-                        className="h-full w-full object-cover rounded-md"
+                  <div
+                    key={index}
+                    className="group relative bg-gray-100 rounded-lg shadow-lg overflow-hidden"
+                  >
+                    <img
+                      src={`${baseUrl}/uploads/${file}`}
+                      alt={file}
+                      className="w-full h-[150px] object-cover group-hover:opacity-90 transition-opacity duration-300 ease-in-out"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center space-x-4">
+                      <MdOutlineRemoveRedEye
+                        size={30}
+                        className="text-white cursor-pointer"
+                        onClick={() => viewImage(`${baseUrl}/uploads/${file}`)}
                       />
-                      <div className="w-full mt-4 flex items-center justify-between">
-                        <div
-                          onClick={() =>
-                            viewImage(`${baseUrl}/uploads/${file}`)
-                          }
-                        >
-                          <MdOutlineRemoveRedEye
-                            size={40}
-                            className="text-blue-500"
-                          />
-                        </div>
-                        <div onClick={() => handleRemoveExistingFile(file)}>
-                          <MdDelete size={40} className="text-red-500" />
-                        </div>
-                      </div>
+                      <MdDelete
+                        size={30}
+                        className="text-red-500 cursor-pointer"
+                        onClick={() => handleRemoveExistingFile(file)}
+                      />
                     </div>
                   </div>
                 ))}
@@ -236,61 +226,62 @@ const EditMaintenanceRequest = ({ handleCloseEditRequestModal, request }) => {
             </div>
           )}
 
-          <br />
-          <br />
-          <br />
-          <div>
-            <label className="block text-gray-700">Add New Files</label>
+          {/* Upload New Files */}
+          <div className="mt-6">
+            <label className="font-semibold text-gray-600">Add New Files</label>
             <input
               type="file"
               name="files"
               onChange={handleFileChange}
               multiple
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
+              className="block w-full px-4 py-2 border border-gray-300 rounded-lg mt-2 focus:ring focus:ring-indigo-300"
             />
           </div>
 
           {/* Display Selected New Files */}
           {files.length > 0 && (
             <div className="mt-4">
-              <h3 className="text-gray-700 mb-2">New Selected Files:</h3>
-              <div className="flex flex-wrap gap-4 items-center ">
+              <h3 className="text-gray-700 font-semibold mb-2">
+                New Selected Files:
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {files.map((file, index) => (
-                  <div key={index} className="text-gray-600 text-sm">
+                  <div
+                    key={index}
+                    className="group relative bg-gray-100 rounded-lg shadow-lg overflow-hidden"
+                  >
                     {file.type.startsWith("image/") ? (
-                      <div>
-                        <img
-                          src={URL.createObjectURL(file)}
-                          alt={file.name}
-                          className="h-[200px] w-[200px] object-cover rounded-md"
-                        />
-                        <div className="w-full mt-4 flex items-center justify-between">
-                          <div
-                            onClick={() => viewImage(URL.createObjectURL(file))}
-                          >
-                            <MdOutlineRemoveRedEye
-                              size={40}
-                              className="text-blue-500"
-                            />
-                          </div>
-                          <div onClick={() => handleRemoveExistingFile(file)}>
-                            <MdDelete size={40} className="text-red-500" />
-                          </div>
-                        </div>
-                      </div>
+                      <img
+                        src={URL.createObjectURL(file)}
+                        alt={file.name}
+                        className="w-full h-[150px] object-cover group-hover:opacity-90 transition-opacity duration-300 ease-in-out"
+                      />
                     ) : (
-                      <p>{file.name}</p>
+                      <p className="p-4 text-gray-600">{file.name}</p>
                     )}
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center space-x-4">
+                      <MdOutlineRemoveRedEye
+                        size={30}
+                        className="text-white cursor-pointer"
+                        onClick={() => viewImage(URL.createObjectURL(file))}
+                      />
+                      <MdDelete
+                        size={30}
+                        className="text-red-500 cursor-pointer"
+                        onClick={() => handleRemoveExistingFile(file)}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          <div className="text-center">
+          {/* Submit Button */}
+          <div className="text-center mt-6">
             <button
               type="submit"
-              className="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:ring focus:ring-indigo-200"
+              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:ring focus:ring-indigo-300"
               disabled={loading}
             >
               {loading ? "Submitting..." : "Submit Request"}
@@ -301,13 +292,14 @@ const EditMaintenanceRequest = ({ handleCloseEditRequestModal, request }) => {
             <p className="text-center text-red-500 mt-4">{message}</p>
           )}
         </form>
+
+        {selectedImage && isViewImageClicked && (
+          <ViewImage
+            imgUrl={selectedImage}
+            closeViewImageModal={closeViewImageModal}
+          />
+        )}
       </div>
-      {selectedImage && isViewImageClicked && (
-        <ViewImage
-          imgUrl={selectedImage}
-          closeViewImageModal={closeViewImageModal}
-        />
-      )}
     </div>
   );
 };

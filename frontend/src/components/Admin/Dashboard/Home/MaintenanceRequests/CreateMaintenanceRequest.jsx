@@ -3,6 +3,7 @@ import axios from "axios";
 import { baseUrl } from "../../../../../constants/env.const";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../../../../atoms/userAtom";
+
 const CreateMaintenanceRequest = ({ handleCloseCreateRequestModal }) => {
   const user = useRecoilValue(userState);
   const [formData, setFormData] = useState({
@@ -59,13 +60,13 @@ const CreateMaintenanceRequest = ({ handleCloseCreateRequestModal }) => {
       );
       setMessage("Maintenance request created successfully!");
       setFormData({
-        userId: "",
+        userId: user.user_id,
         unitNumber: "",
         requestDate: "",
         priority: "Low",
         status: "Pending",
         description: "",
-        assignedVendorId: "",
+        assignedVendorId: 1,
       });
       setFiles([]);
     } catch (error) {
@@ -76,125 +77,135 @@ const CreateMaintenanceRequest = ({ handleCloseCreateRequestModal }) => {
   };
 
   return (
-    <div className="w-full h-screen absolute top-0 left-0 bg-black/50 flex items-center justify-items-center">
-      <div className="w-[600px] h-[90%] overflow-y-scroll mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <div className="w-full flex items-center justify-end">
-          <div
+    <div className="w-full h-screen absolute top-0 left-0 bg-black/50 flex items-center justify-center">
+      <div className="w-[800px] max-w-full h-[85%] overflow-y-auto mx-auto bg-white p-8 rounded-lg shadow-xl">
+        <div className="w-full flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold text-gray-800">
+            Create Maintenance Request
+          </h2>
+          <button
             onClick={() => handleCloseCreateRequestModal(false)}
-            className="w-fit px-4 py-2 rounded-md bg-red-500 hover:bg-red-600 text-white cursor-pointer"
+            className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg"
           >
             Close
-          </div>
+          </button>
         </div>
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Create Maintenance Request
-        </h2>
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-gray-700">User ID</label>
-            <input
-              type="text"
-              name="userId"
-              value={formData.userId}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            />
+          {/* Form Fields */}
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">User ID</label>
+              <input
+                type="text"
+                name="userId"
+                value={formData.userId}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Unit Number</label>
+              <input
+                type="text"
+                name="unitNumber"
+                value={formData.unitNumber}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">
+                Request Date
+              </label>
+              <input
+                type="date"
+                name="requestDate"
+                value={formData.requestDate}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Priority</label>
+              <select
+                name="priority"
+                value={formData.priority}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Status</label>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              >
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col">
+              <label className="font-semibold text-gray-600">Description</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
+              ></textarea>
+            </div>
           </div>
 
-          <div>
-            <label className="block text-gray-700">Unit Number</label>
-            <input
-              type="text"
-              name="unitNumber"
-              value={formData.unitNumber}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700">Request Date</label>
-            <input
-              type="date"
-              name="requestDate"
-              value={formData.requestDate}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700">Priority</label>
-            <select
-              name="priority"
-              value={formData.priority}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            >
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-gray-700">Status</label>
-            <select
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            >
-              <option value="Pending">Pending</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-gray-700">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-            ></textarea>
-          </div>
-
-          <div>
-            <label className="block text-gray-700">Files</label>
+          {/* File Input */}
+          <div className="mt-6">
+            <label className="font-semibold text-gray-600">Upload Files</label>
             <input
               type="file"
               name="files"
               onChange={handleFileChange}
               multiple
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
+              className="block w-full px-4 py-2 border border-gray-300 rounded-lg mt-2 focus:ring focus:ring-indigo-300"
             />
           </div>
 
           {/* Display Selected Files */}
           {files.length > 0 && (
             <div className="mt-4">
-              <h3 className="text-gray-700 mb-2">Selected Files:</h3>
-              <div className="flex flex-wrap gap-4 items-center justify-center">
+              <h3 className="text-gray-700 font-semibold mb-2">
+                Selected Files:
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {files.map((file, index) => (
-                  <div key={index} className="text-gray-600 text-sm">
+                  <div
+                    key={index}
+                    className="group relative bg-gray-100 rounded-lg shadow-lg overflow-hidden"
+                  >
                     {file.type.startsWith("image/") ? (
-                      <div className="cursor-pointer">
-                        <img
-                          src={URL.createObjectURL(file)}
-                          alt={file.name}
-                          className="h-[200px] w-[200px] object-contain rounded-md"
-                        />
-                      </div>
+                      <img
+                        src={URL.createObjectURL(file)}
+                        alt={file.name}
+                        className="w-full h-[150px] object-cover group-hover:opacity-90 transition-opacity duration-300 ease-in-out"
+                      />
                     ) : (
-                      <p>{file.name}</p>
+                      <p className="p-4 text-gray-600">{file.name}</p>
                     )}
                   </div>
                 ))}
@@ -202,10 +213,11 @@ const CreateMaintenanceRequest = ({ handleCloseCreateRequestModal }) => {
             </div>
           )}
 
-          <div className="text-center">
+          {/* Submit Button */}
+          <div className="text-center mt-6">
             <button
               type="submit"
-              className="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:ring focus:ring-indigo-200"
+              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:ring focus:ring-indigo-300"
               disabled={loading}
             >
               {loading ? "Submitting..." : "Submit Request"}
